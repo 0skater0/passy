@@ -1,0 +1,66 @@
+name: Deploy frontend-only build to GitHub Pages
+
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build static SPA
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      # Auto-enables Pages if it isn't enabled yet. Saves the manual
+      # Settings → Pages → Source → GitHub Actions dance on fresh repos.
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build frontend (no backend mode)
+        env:
+          VITE_BASE_PATH: /passy/
+        run: npm run build -w frontend
+
+      # History routing on GitHub Pages needs a 404 fallback. Passy uses
+      # hash routing, so this is belt-and-braces for anyone who copies
+      # the workflow into a history-mode fork.
+      - name: Copy index.html to 404.html
+        run: cp frontend/dist/index.html frontend/dist/404.html
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: frontend/dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5

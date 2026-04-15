@@ -1,0 +1,50 @@
+name: Feature request
+description: Suggest an enhancement or new feature
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: use-case
+    attributes:
+      label: What problem does this solve?
+      description: Tell us about the workflow you're stuck on, not the solution you have in mind
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed solution
+      description: How would this work from the user's point of view? Sketches, mockups and example flows are welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you've considered
+      description: Other approaches, existing workarounds, or prior art in other password managers
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Which part of the app does this affect?
+      multiple: true
+      options:
+        - Generator (modes, presets, strength display)
+        - Accounts and auth (signup, login, OIDC, TOTP, backup codes)
+        - History (local or server-side)
+        - Admin panel
+        - Settings
+        - Email notifications
+        - API / integrations
+        - Docs and onboarding
+        - Other
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I searched existing issues and did not find a duplicate
+          required: true

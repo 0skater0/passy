@@ -1,0 +1,27 @@
+# Exclude local artifacts from Docker build context
+.git
+**/.git
+**/.DS_Store
+**/node_modules
+**/dist
+**/build
+**/.vite
+**/.env
+**/.env.*
+# Local data dirs (container uses /data volume)
+data
+**/data
+# IDE and CI config not needed in image
+.claude/
+.gitlab-ci.yml
+*.md
+build.json
+.idea/
+.vscode/
+# CI/test/debug artefacts
+.npm-cache/
+coverage/
+*.log
+npm-debug.log*
+.eslintcache
+*.tsbuildinfo

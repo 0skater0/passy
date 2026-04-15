@@ -1,0 +1,42 @@
+{
+  "name": "passy-workspace",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Self-hosted password generator and credential manager — Vue 3 + Node.js + Postgres/SQLite, with OIDC, TOTP and HIBP checks.",
+  "keywords": [
+    "password-manager",
+    "password-generator",
+    "self-hosted",
+    "totp",
+    "oidc",
+    "typescript",
+    "vue",
+    "nodejs",
+    "docker"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0skater0/passy.git"
+  },
+  "homepage": "https://github.com/0skater0/passy#readme",
+  "bugs": {
+    "url": "https://github.com/0skater0/passy/issues"
+  },
+  "license": "MIT",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "build": "npm run build -w frontend && npm run build -w backend",
+    "build:frontend": "npm run build -w frontend",
+    "build:backend": "npm run build -w backend",
+    "type-check": "npm run type-check -w frontend && npm run type-check -w backend"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
+
+
+

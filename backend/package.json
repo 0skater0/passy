@@ -1,0 +1,45 @@
+{
+  "name": "passy-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Passy backend — Express API, auth, OIDC, TOTP, HIBP.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0skater0/passy.git",
+    "directory": "backend"
+  },
+  "homepage": "https://github.com/0skater0/passy#readme",
+  "bugs": {
+    "url": "https://github.com/0skater0/passy/issues"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "type-check": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.9.0",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "nodemailer": "^8.0.5",
+    "openid-client": "^6.8.2",
+    "otpauth": "^9.5.0",
+    "pg": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.6.0",
+    "@types/nodemailer": "^8.0.0",
+    "@types/pg": "^8.20.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}

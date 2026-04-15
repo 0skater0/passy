@@ -1,0 +1,39 @@
+{
+  "name": "passy-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Passy frontend — Vue 3 + Vite SPA.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0skater0/passy.git",
+    "directory": "frontend"
+  },
+  "homepage": "https://github.com/0skater0/passy#readme",
+  "bugs": {
+    "url": "https://github.com/0skater0/passy/issues"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 5173",
+    "type-check": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/node": "^25.6.0",
+    "@types/qrcode": "^1.5.6",
+    "@vitejs/plugin-vue": "^6.0.5",
+    "@zxcvbn-ts/core": "^3.0.4",
+    "@zxcvbn-ts/language-common": "^3.0.4",
+    "@zxcvbn-ts/language-en": "^3.0.2",
+    "qrcode": "^1.5.4",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.8",
+    "vue": "^3.5.32",
+    "vue-i18n": "^11.3.2",
+    "vue-router": "^5.0.4"
+  }
+}

@@ -1,0 +1,111 @@
+name: Bug report
+description: Something in Passy is not working as expected
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please fill in as much detail as you can.
+
+        **Do not paste real passwords, TOTP seeds, backup codes, JWT values, or email addresses
+        of users you do not want public.** If you need to include a log excerpt, redact sensitive
+        fields first — the log file on disk does not do that for you.
+  - type: input
+    id: app-version
+    attributes:
+      label: Passy version
+      description: Shown at the bottom of the UI, or the Docker image tag you pulled
+      placeholder: "1.2.3"
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system (host)
+      description: Where Passy is running — e.g. "Debian 12 + Docker 25", "Windows 11 + WSL2", "bare-metal Ubuntu 24.04"
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser (if the bug is in the UI)
+      description: Name and version — e.g. "Firefox 128", "Chrome 131", "Safari 17.5"
+    validations:
+      required: false
+  - type: dropdown
+    id: deployment
+    attributes:
+      label: How are you running Passy?
+      options:
+        - Docker Compose (recommended)
+        - Docker (standalone container)
+        - Node locally (npm start)
+        - Reverse-proxied (Traefik, Nginx, Caddy, ...)
+        - Other / mixed
+    validations:
+      required: true
+  - type: dropdown
+    id: database
+    attributes:
+      label: Database
+      options:
+        - Postgres
+        - SQLite
+        - Not sure
+    validations:
+      required: true
+  - type: dropdown
+    id: auth-mode
+    attributes:
+      label: Which auth mode is affected?
+      options:
+        - Local (email + password)
+        - OIDC / SSO
+        - TOTP / 2FA
+        - Password reset via email
+        - None — the bug is not auth-related
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: One step per line. Start from a known state (fresh container, logged out, etc.)
+      placeholder: |
+        1. Log in with a local account
+        2. Open the account page
+        3. Click "Enable TOTP"
+        4. …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include error messages verbatim where possible
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log excerpt
+      description: |
+        Backend logs from `docker logs passy` or your process manager. Paste only the lines
+        around the failure. Redact secrets, email addresses and IPs before submitting.
+      render: text
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I searched existing issues and did not find a duplicate
+          required: true
+        - label: I redacted any secrets, tokens or PII from the logs and screenshots
+          required: true

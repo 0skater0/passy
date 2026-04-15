@@ -1,0 +1,76 @@
+# Dependabot configuration.
+#
+# Routine version bumps arrive once a month in a single grouped PR per
+# ecosystem (npm / github-actions / docker). Security updates are
+# triggered immediately when a CVE lands — also grouped per ecosystem
+# so multiple advisories land in one PR, not ten.
+#
+# Group names make the cadence visible in the PR title, e.g.:
+#   npm(deps): bump the npm-monthly group with 3 updates
+#   npm(deps): bump the npm-security group with 2 updates
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: monthly
+      day: monday
+      time: "06:30"
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    commit-message:
+      prefix: npm
+      include: scope
+    groups:
+      npm-security:
+        applies-to: security-updates
+        patterns: ["*"]
+      npm-monthly:
+        applies-to: version-updates
+        patterns: ["*"]
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+      day: monday
+      time: "06:30"
+    labels:
+      - dependencies
+      - github-actions
+    commit-message:
+      prefix: actions
+      include: scope
+    groups:
+      actions-security:
+        applies-to: security-updates
+        patterns: ["*"]
+      actions-monthly:
+        applies-to: version-updates
+        patterns: ["*"]
+
+  - package-ecosystem: docker
+    directory: "/"
+    schedule:
+      interval: monthly
+      day: monday
+      time: "06:30"
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: docker
+      include: scope
+    # Stay on the Node LTS line. Majors land deliberately when a new LTS
+    # is available, not every time a "Current" release drops.
+    ignore:
+      - dependency-name: node
+        update-types: ["version-update:semver-major"]
+    groups:
+      docker-security:
+        applies-to: security-updates
+        patterns: ["*"]
+      docker-monthly:
+        applies-to: version-updates
+        patterns: ["*"]
