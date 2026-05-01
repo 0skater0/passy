@@ -24,7 +24,7 @@ jobs:
       # Auto-enables Pages if it isn't enabled yet. Saves the manual
       # Settings → Pages → Source → GitHub Actions dance on fresh repos.
       - name: Configure Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
         with:
           enablement: true
 
